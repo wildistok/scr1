@@ -6,7 +6,7 @@
 
 ARCH ?=IMC
 IPIC ?=0
-export BUS  ?=AHB
+export BUS  ?=AXI
 
 ARCH_lowercase = $(shell echo $(ARCH) | tr A-Z a-z)
 BUS_lowercase  = $(shell echo $(BUS)  | tr A-Z a-z)
