@@ -177,17 +177,32 @@ _run_test:
 //-----------------------------------------------------------------------
 
 #define RVTEST_PASS                                                     \
-        fence;                                                          \
-        mv a1, TESTNUM;                                                 \
-        li  a0, 0x0;                                                    \
-        ecall
+            fence;                                                      \
+            li a1, 0xf0000000;                                          \
+            la a2, good;                                                \
+1111:       lb a0, 0(a2);                                               \
+            beqz a0, 2222f;                                             \
+            sb a0, 0(a1);                                               \
+            addi a2, a2, 1;                                             \
+            j 1111b;                                                    \
+2222:       mv a0, TESTNUM;                                             \
+            li  a0, 0x0;                                                \
+            ecall
 
 #define TESTNUM x28
 #define RVTEST_FAIL                                                     \
-        fence;                                                          \
-        mv a1, TESTNUM;                                                 \
-        li  a0, 0x1;                                                    \
-        ecall
+            fence;                                                      \
+            li a1, 0xf0000000;                                          \
+            la a2, bad;                                                 \
+1111:       lb a0, 0(a2);                                               \
+            beqz a0, 2222f;                                             \
+            sb a0, 0(a1);                                               \
+            addi a2, a2, 1;                                             \
+            j 1111b;                                                    \
+2222:       mv a1, TESTNUM;                                             \
+            li  a0, 0x1;                                                \
+            ecall
+           
 
 //-----------------------------------------------------------------------
 // Data Section Macro
@@ -813,7 +828,10 @@ pass: \
 # Test data section
 #-----------------------------------------------------------------------
 
-#define TEST_DATA
+#define TEST_DATA \
+.data; \
+bad: .asciz "bad\n"; \
+good: .asciz "good\n"; \
 
 #endif
 
