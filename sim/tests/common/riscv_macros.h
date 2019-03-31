@@ -194,12 +194,12 @@ _run_test:
             fence;                                                      \
             li a1, 0xf0000000;                                          \
             la a2, bad;                                                 \
-1111:       lb a0, 0(a2);                                               \
-            beqz a0, 2222f;                                             \
+3333:       lb a0, 0(a2);                                               \
+            beqz a0, 4444f;                                             \
             sb a0, 0(a1);                                               \
             addi a2, a2, 1;                                             \
-            j 1111b;                                                    \
-2222:       mv a1, TESTNUM;                                             \
+            j 3333b;                                                    \
+4444:       mv a1, TESTNUM;                                             \
             li  a0, 0x1;                                                \
             ecall
            
@@ -829,9 +829,9 @@ pass: \
 #-----------------------------------------------------------------------
 
 #define TEST_DATA \
-.data; \
-bad: .asciz "bad\n"; \
 good: .asciz "good\n"; \
+bad: .asciz "bad\n"; \
+.align 2;
 
 #endif
 
