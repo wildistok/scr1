@@ -36,7 +36,7 @@ parameter int unsigned          SCR1_CSR_MTVEC_BASE_VAL_BITS    = `SCR1_XLEN-SCR
   `define SCR1_RVE_EXT
   `undef  SCR1_RVM_EXT
   `define SCR1_RVC_EXT
-  `undef SCR1_IFU_QUEUE_BYPASS
+  `define SCR1_IFU_QUEUE_BYPASS
   `define SCR1_EXU_STAGE_BYPASS
   `undef  SCR1_CLKCTRL_EN
   `undef  SCR1_VECT_IRQ_EN
@@ -47,7 +47,7 @@ parameter int unsigned          SCR1_CSR_MTVEC_BASE_VAL_BITS    = `SCR1_XLEN-SCR
   `undef  SCR1_RVE_EXT
   `undef  SCR1_RVM_EXT
   `define SCR1_RVC_EXT
-  `undef SCR1_IFU_QUEUE_BYPASS
+  `define SCR1_IFU_QUEUE_BYPASS
   `define SCR1_EXU_STAGE_BYPASS
   `undef  SCR1_CLKCTRL_EN
   `define SCR1_VECT_IRQ_EN
@@ -57,7 +57,7 @@ parameter int unsigned          SCR1_CSR_MTVEC_BASE_VAL_BITS    = `SCR1_XLEN-SCR
   `undef  SCR1_RVE_EXT
   `define SCR1_RVM_EXT
   `define SCR1_RVC_EXT
-  `undef SCR1_IFU_QUEUE_BYPASS
+  `define SCR1_IFU_QUEUE_BYPASS
   `define SCR1_EXU_STAGE_BYPASS
   `define SCR1_FAST_MUL
   `undef  SCR1_CLKCTRL_EN
