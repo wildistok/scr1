@@ -361,9 +361,6 @@ always_comb begin
                         idu2exu_cmd.ialu_cmd    = SCR1_IALU_CMD_SUB_NE;
                         idu2exu_cmd.rd_wb_sel   = SCR1_RD_WB_INC_PC;
 
-`ifdef SCR1_RVE_EXT
-                        if (instr[19] | instr[24])  rve_illegal = 1'b1;
-`endif  // SCR1_RVE_EXT
                     end // SCR1_OPCODE_CUSTOM_BAL
                     
                     SCR1_OPCODE_SYSTEM      : begin
