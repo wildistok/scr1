@@ -32,7 +32,8 @@ typedef enum logic [6:2] {
     SCR1_OPCODE_BRANCH      = 5'b11000,
     SCR1_OPCODE_JALR        = 5'b11001,
     SCR1_OPCODE_JAL         = 5'b11011,
-    SCR1_OPCODE_SYSTEM      = 5'b11100
+    SCR1_OPCODE_SYSTEM      = 5'b11100,
+    SCR1_OPCODE_CUSTOM_BAL  = 5'b00010
 } type_scr1_rvi_opcode_e;
 
 
@@ -73,7 +74,7 @@ typedef enum logic [SCR1_IALU_CMD_WIDTH_E-1:0] {
     SCR1_IALU_CMD_SRA           // op1 >>> op2
 `ifdef SCR1_RVM_EXT
     ,
-    SCR1_IALU_CMD_MUL,          // low(unsig(op1) * unsig(op2))
+    SCR1_IALU_CMD_MUL,          // low(unsiialu_resg(op1) * unsig(op2))
     SCR1_IALU_CMD_MULHU,        // high(unsig(op1) * unsig(op2))
     SCR1_IALU_CMD_MULHSU,       // high(op1 * unsig(op2))
     SCR1_IALU_CMD_MULH,         // high(op1 * op2)
@@ -92,6 +93,7 @@ localparam SCR1_SUM2_OP_WIDTH_E      = $clog2(SCR1_SUM2_OP_ALL_NUM_E);
 typedef enum logic [SCR1_SUM2_OP_WIDTH_E-1:0] {
     SCR1_SUM2_OP_PC_IMM,            // op1 = curr_pc; op2 = imm (AUIPC, target new_pc for JAL and branches)
     SCR1_SUM2_OP_REG_IMM,           // op1 = rs1; op2 = imm (target new_pc for JALR, LOAD/STORE address)
+    SCR1_SUM2_OP_REG2_IMM,          // op1 = rs2; op2 = imm (target new_pc for BAL address)
     SCR1_SUM2_OP_ERROR = 'x
 } type_scr1_ialu_sum2_op_sel_e;
 

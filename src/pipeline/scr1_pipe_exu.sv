@@ -308,6 +308,13 @@ always_comb begin
         ialu_sum2_op1 = curr_pc;
         ialu_sum2_op2 = exu_queue.imm;
     end
+    if (exu_queue.sum2_op == SCR1_SUM2_OP_REG2_IMM) begin
+        ialu_sum2_op1 = mprf2exu_rs2_data;
+        ialu_sum2_op2 = '0;
+    end else begin
+        ialu_sum2_op1 = curr_pc;
+        ialu_sum2_op2 = exu_queue.imm;
+    end
 end
 
 `ifdef SCR1_EXU_STAGE_BYPASS

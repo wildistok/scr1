@@ -346,7 +346,27 @@ always_comb begin
                         if (instr[11] | instr[19])  rve_illegal = 1'b1;
 `endif  // SCR1_RVE_EXT
                     end // SCR1_OPCODE_JALR
+                    
+                    SCR1_OPCODE_CUSTOM_BAL         : begin
+                        idu2exu_use_rd          = 1'b1;
+                        idu2exu_use_rs1         = 1'b1;
+                        idu2exu_use_rs2         = 1'b1;
+                        idu2exu_use_imm         = 1'b1;
 
+                        idu2exu_cmd.jump_req    = 1'b1;
+                        idu2exu_cmd.imm         = '0;
+
+                        idu2exu_cmd.sum2_op     = SCR1_SUM2_OP_REG2_IMM;
+                        idu2exu_cmd.ialu_op     = SCR1_IALU_OP_REG_IMM;
+                        idu2exu_cmd.ialu_cmd    = SCR1_IALU_CMD_SUB_NE;
+                        idu2exu_cmd.rd_wb_sel   = SCR1_RD_WB_INC_PC;
+
+                        endcase // funct3
+`ifdef SCR1_RVE_EXT
+                        if (instr[19] | instr[24])  rve_illegal = 1'b1;
+`endif  // SCR1_RVE_EXT
+                    end // SCR1_OPCODE_CUSTOM_BAL
+                    
                     SCR1_OPCODE_SYSTEM      : begin
                         idu2exu_use_rd      = 1'b1;
                         idu2exu_use_imm     = 1'b1;
