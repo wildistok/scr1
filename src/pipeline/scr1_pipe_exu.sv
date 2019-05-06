@@ -304,16 +304,12 @@ always_comb begin
     if (exu_queue.sum2_op == SCR1_SUM2_OP_REG_IMM) begin
         ialu_sum2_op1 = mprf2exu_rs1_data;
         ialu_sum2_op2 = exu_queue.imm;
-    end else begin
-        ialu_sum2_op1 = curr_pc;
-        ialu_sum2_op2 = exu_queue.imm;
-    end
-    if (exu_queue.sum2_op == SCR1_SUM2_OP_REG2_IMM) begin
-        ialu_sum2_op1 = mprf2exu_rs2_data;
-        ialu_sum2_op2 = '0;
-    end else begin
-        ialu_sum2_op1 = curr_pc;
-        ialu_sum2_op2 = exu_queue.imm;
+    end else if (exu_queue.sum2_op == SCR1_SUM2_OP_REG2_IMM) begin 
+            ialu_sum2_op1 = mprf2exu_rs2_data;
+            ialu_sum2_op2 = '0;
+        end else begin
+            ialu_sum2_op1 = curr_pc;
+            ialu_sum2_op2 = exu_queue.imm;
     end
 end
 

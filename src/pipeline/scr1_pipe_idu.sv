@@ -353,7 +353,7 @@ always_comb begin
                         idu2exu_use_rs2         = 1'b1;
                         idu2exu_use_imm         = 1'b1;
 
-                        idu2exu_cmd.jump_req    = 1'b1;
+                        idu2exu_cmd.branch_req    = 1'b1;
                         idu2exu_cmd.imm         = '0;
 
                         idu2exu_cmd.sum2_op     = SCR1_SUM2_OP_REG2_IMM;
