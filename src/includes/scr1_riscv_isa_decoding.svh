@@ -88,7 +88,7 @@ typedef enum logic [SCR1_IALU_CMD_WIDTH_E-1:0] {
 //-------------------------------------------------------------------------------
 // IALU SUM2 operands (result is JUMP/BRANCH target, LOAD/STORE address)
 //-------------------------------------------------------------------------------
-localparam SCR1_SUM2_OP_ALL_NUM_E    = 2;
+localparam SCR1_SUM2_OP_ALL_NUM_E    = 3;
 localparam SCR1_SUM2_OP_WIDTH_E      = $clog2(SCR1_SUM2_OP_ALL_NUM_E);
 typedef enum logic [SCR1_SUM2_OP_WIDTH_E-1:0] {
     SCR1_SUM2_OP_PC_IMM,            // op1 = curr_pc; op2 = imm (AUIPC, target new_pc for JAL and branches)
